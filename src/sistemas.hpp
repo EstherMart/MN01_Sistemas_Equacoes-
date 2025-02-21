@@ -11,7 +11,14 @@ double calcular_determinante(vector<vector<double>>& A);
 
 /* Funcao para resolver o sistema de uma matriz triangular superior
 Obs.: Estou usando ela por enquanto porque ainda nao tenho a resolucao por regra de cramer */
+// Cada deslocamento é cálculado da seguinte forma: di = detCi/detC
+// detC é o determinante da matriz dos coeficientes C
+// detCi é o determinante da matriz obtida trocando-se a coluna i da matriz C pelo vetor v dos termos independentes.
 vector<double> substituicao_retroativa(vector<vector<double>> A, vector<double> b);
 
 // Eliminacao de gauss com substituicao retroativa
 vector<double> eliminacao_gauss(vector<vector<double>> A, vector<double> b);
+
+// Eliminação usando o Método de Gauss-Jordan 
+vector<double> eliminacao_gauss_jordan(vector<vector<double>> A, vector<double> b);
+
