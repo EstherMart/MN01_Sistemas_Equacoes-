@@ -9,6 +9,9 @@ using namespace std;
  // Funcao para calcular a determinante de uma matriz
 double calcular_determinante(vector<vector<double>>& A);
 
+// Funcao para calcular a solucao de um sistema por meio da regra de Cramer
+vector<double> cramer(vector<vector<double>> A, vector<double> b);
+
 /* Funcao para resolver o sistema de uma matriz triangular superior
 Obs.: Estou usando ela por enquanto porque ainda nao tenho a resolucao por regra de cramer */
 // Cada deslocamento é cálculado da seguinte forma: di = detCi/detC
