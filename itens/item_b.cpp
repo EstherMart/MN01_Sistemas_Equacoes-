@@ -2,7 +2,7 @@
 #include <vector>
 #include <iomanip>
 #include <cmath>
-#include "sistemas.hpp"
+#include "../src/sistemas.hpp"
 
 using namespace std;
 
