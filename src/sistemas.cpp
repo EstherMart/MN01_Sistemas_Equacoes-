@@ -50,43 +50,44 @@ double calcular_determinante(vector<vector<double>>& A){
 }
 
 vector<double> cramer(vector<vector<double>> A, vector<double> b){
-    
-    // Guardando o determinante da matriz A
-    double determinante = calcular_determinante(A);
-    double determinante_i;
-    
-    // Criando o vetor solucao
-    vector<double> solucao;
-    
-    // Criando um vetor que vai ser usado para calcular as determinantes
-    vector<vector<double>> matriz_deti = A;
-    
-    // Percorrendo as colunas e modificando a mesma
-    int n = A.size();
-    for (int i = 0; i < n; i++){
-        
-        for (int j = 0; j < n; j++){
-            
-            // Alterando a matriz para calcular a deti
-            matriz_deti[j][i] = b[j];
-            
-        }
-        
-        // Calculando a determinante para aquela coluna
-        determinante_i = calcular_determinante(matriz_deti);
-        
-        // Calculando o valor para xi
-        solucao.push_back(determinante_i / determinante);
-        
-        // Retomando o valor original da matriz
-        matriz_deti = A;
-        
-    }
-    
-    // Retornando o vetor com a solucao do sistema
-    return solucao;
-    
+
+	// Guardando o determinante da matriz A
+	double determinante = calcular_determinante(A);
+	double determinante_i;
+
+	// Criando o vetor solucao
+	vector<double> solucao;
+
+	// Criando um vetor que vai ser usado para calcular as determinantes
+	vector<vector<double>> matriz_deti = A;
+
+	// Percorrendo as colunas e modificando a mesma
+	int n = A.size();
+	for (int i = 0; i < n; i++){
+
+		for (int j = 0; j < n; j++){
+
+			// Alterando a matriz para calcular a deti
+			matriz_deti[j][i] = b[j];
+
+		}
+
+		// Calculando a determinante para aquela coluna
+		determinante_i = calcular_determinante(matriz_deti);
+
+		// Calculando o valor para xi
+		solucao.push_back(determinante_i / determinante);
+
+		// Retomando o valor original da matriz
+		matriz_deti = A;
+
+	}
+
+	// Retornando o vetor com a solucao do sistema
+	return solucao;
+
 }
+
 
 
 // Esta funcao gera o vetor solucao, dada a sua matriz na forma triangular superior.
@@ -132,7 +133,7 @@ vector<double> eliminacao_gauss(vector<vector<double>> A, vector<double> b){
 
 	}
 
-	vector<double> x = substituicao_retroativa(A, b);
+	vector<double> x = cramer(A, b);
 	return x;
 
 }
@@ -185,4 +186,27 @@ vector<double> eliminacao_gauss_jordan(vector<vector<double>> A, vector<double> 
     }
 
     return x;
+}
+
+// Implementando a funcao para calibrar o sistema
+vector<double> calibracao(vector<double> solucao, double a){
+
+  vector<double> solucao_calibrada;
+  for (int i = 0; i < solucao.size(); i++){
+    solucao_calibrada.push_back(solucao[i] * a);
+  }
+
+  return solucao_calibrada;
+
+ }
+
+ // Implementando a funcao para verificar se, com os pendulos calibrados, rompera
+tuple<bool, double> verificacao_rompimento(vector<double> solucao, vector<double> solucao_calibrada, double limite){
+  for (int i = 0; i < solucao_calibrada.size(); i++){
+    if (solucao_calibrada[i] > limite){
+      return make_tuple(true, solucao[i]); // true = possivelmente rompera com d = solucao[i]
+    }
+  }
+
+  return make_tuple(false, -1);
 }
