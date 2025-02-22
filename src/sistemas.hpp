@@ -25,3 +25,6 @@ vector<double> eliminacao_gauss(vector<vector<double>> A, vector<double> b);
 // Eliminação usando o Método de Gauss-Jordan 
 vector<double> eliminacao_gauss_jordan(vector<vector<double>> A, vector<double> b);
 
+// Funcao para realizar o calculo de amplitude e verificacao
+vector<double> calibracao(vector<double> solucao, double a);
+tuple<bool, double> verificacao_rompimento(vector<double> solucao, vector<double> solucao_calibrada, double limite);
