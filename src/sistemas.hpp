@@ -1,7 +1,6 @@
 # include <cmath>
 # include <tuple>
 # include <vector>
-# include <functional>
 
 using namespace std;
 // Declarando as funcoes

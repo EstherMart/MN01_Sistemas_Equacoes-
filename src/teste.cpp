@@ -2,7 +2,6 @@
 # include <vector>
 # include <cmath>
 # include <tuple>
-# include <functional>
 #include <clocale>
 #include <iomanip>  // Para definir a largura das colunas
 # include "sistemas.hpp"

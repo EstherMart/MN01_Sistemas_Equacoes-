@@ -1,6 +1,4 @@
 # include "sistemas.hpp"
-#include <iostream>
-#include <iomanip>  // Para arredondamento e formatação
 #include <cmath>
 #include <vector>
 
@@ -101,7 +99,7 @@ vector<double> substituicao_retroativa(vector<vector<double>> A, vector<double> 
 	for (int i = A.size() - 1; i >= 0; i--){
 
 		double S = 0;
-		for (int j = i + 1; j < A.size(); j++){
+		for (size_t j = i + 1; j < A.size(); j++){
 			S += A[i][j] * x[j];
 		}
 
@@ -117,12 +115,12 @@ vector<double> substituicao_retroativa(vector<vector<double>> A, vector<double> 
 // Criando o metodo da eliminacao de gauss, que vai transformar a matriz aumentada [A|b] em sua forma triangular superior
 vector<double> eliminacao_gauss(vector<vector<double>> A, vector<double> b){
 
-	for (int k = 0; k < A.size() - 1; k++){
+	for (size_t k = 0; k < A.size() - 1; k++){
 
-		for (int i = k + 1; i < A.size(); i++){
+		for (size_t i = k + 1; i < A.size(); i++){
 
 			double m = -A[i][k]/A[k][k];
-			for (int j = k + 1; j < A.size(); j++){
+			for (size_t j = k + 1; j < A.size(); j++){
 				A[i][j] = m * A[k][j] + A[i][j];
 			}
 
@@ -192,7 +190,7 @@ vector<double> eliminacao_gauss_jordan(vector<vector<double>> A, vector<double> 
 vector<double> calibracao(vector<double> solucao, double a){
 
   vector<double> solucao_calibrada;
-  for (int i = 0; i < solucao.size(); i++){
+  for (size_t i = 0; i < solucao.size(); i++){
     solucao_calibrada.push_back(solucao[i] * a);
   }
 
@@ -202,7 +200,7 @@ vector<double> calibracao(vector<double> solucao, double a){
 
  // Implementando a funcao para verificar se, com os pendulos calibrados, rompera
 tuple<bool, double> verificacao_rompimento(vector<double> solucao, vector<double> solucao_calibrada, double limite){
-  for (int i = 0; i < solucao_calibrada.size(); i++){
+  for (size_t i = 0; i < solucao_calibrada.size(); i++){
     if (solucao_calibrada[i] > limite){
       return make_tuple(true, solucao[i]); // true = possivelmente rompera com d = solucao[i]
     }
