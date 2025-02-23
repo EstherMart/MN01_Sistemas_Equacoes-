@@ -1,6 +1,6 @@
 # Ignore build directories
-/build/
-obj/
+/bin/
+/obj/
 
 # Ignore binary files
 *.o

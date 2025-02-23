@@ -2,7 +2,7 @@
 #include <vector>
 #include <cmath>
 #include <iomanip>
-#include "src/sistemas.hpp"  // Incluindo as funções auxiliares, como o cálculo do determinante e substituição retroativa
+#include "../src/sistemas.hpp"  // Incluindo as funções auxiliares, como o cálculo do determinante e substituição retroativa
 
 using namespace std;
 

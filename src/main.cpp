@@ -1,8 +1,6 @@
 # include <iostream>
 # include <vector>
 # include <cmath>
-# include <tuple>
-# include <functional>
 #include <clocale>
 #include <iomanip>  // Para definir a largura das colunas
 # include "sistemas.hpp"
@@ -20,18 +18,18 @@ int main(){
     cout << "Opção: ";
     cin >> escolha;
 
-    vector<vector<double>> A;
-    vector<double> b;
+    vector<vector<double>> matriz_A;
+    vector<double> vetor_b;
 
     if (escolha == 1) {
         
 		// Matriz e vetor padrão (por enquanto é teste, pois é a matriz utilizada na lista da AP2)
-		A = {
+		matriz_A = {
             {20, 7, 9},
             {7, 30, 8},
             {9, 8, 30}
         };
-        b = {16, 38, 38};
+        vetor_b = {16, 38, 38};
 
     } else if (escolha == 2) {
 
@@ -40,19 +38,19 @@ int main(){
         cout << "Insira o tamanho da matriz quadrada (n x n): ";
         cin >> n;
 
-        A.resize(n, vector<double>(n));
-        b.resize(n);
+        matriz_A.resize(n, vector<double>(n));
+        vetor_b.resize(n);
 
         cout << "Insira os elementos da matriz A linha por linha:\n";
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                cin >> A[i][j];
+                cin >> matriz_A[i][j];
             }
         }
 
         cout << "Insira os elementos do vetor {b}:\n";
         for (int i = 0; i < n; i++) {
-            cin >> b[i];
+            cin >> vetor_b[i];
         }
    
 	} else {
@@ -64,7 +62,7 @@ int main(){
 
 	// Exibir a matriz A com formatação bonitinha
 	cout << "\nMatriz A: [" << endl;
-	for (const auto& row : A) {
+	for (const auto& row : matriz_A) {
 		cout << "    [";
 		for (size_t i = 0; i < row.size(); ++i) {
 			// Formatar a saída para ter 4 espaços de largura, alinhado à direita
@@ -77,16 +75,16 @@ int main(){
 
 	// Exibir o vetor b com formatação bonitinha
 	cout << "Vetor b: [";
-	for (size_t i = 0; i < b.size(); ++i) {
-		cout << b[i];
-		if (i < b.size() - 1) cout << " ";
+	for (size_t i = 0; i < vetor_b.size(); ++i) {
+		cout << vetor_b[i];
+		if (i < vetor_b.size() - 1) cout << " ";
 	}
 	cout << "]" << endl;
 
 	cout << endl;
 
     // Realizando o cálculo do determinante 
-    double detA = calcular_determinante(A);
+    double detA = calcular_determinante(matriz_A);
     cout << "Determinante de A: " << detA << endl;
 
     if (detA == 0) {
@@ -95,19 +93,19 @@ int main(){
     }
 
     // Resolvendo o sistema usando Eliminação de Gauss --> Triangular superior
-    vector<double> x_gauss = eliminacao_gauss(A, b);
+    vector<double> x_gauss = eliminacao_gauss(matriz_A, vetor_b);
     cout << "Soluções do sistema (Eliminação de Gauss): ";
     for (double xi : x_gauss) {
-        cout << xi << " ";
+        cout << fixed << setprecision(10) << xi << " ";
     }
     cout << endl;
 
 	// Resolvendo o sistema usando Gauss-Jordan --> Matriz Identidade
-    vector<double> x_gauss_jordan = eliminacao_gauss_jordan(A, b);
+    vector<double> x_gauss_jordan = eliminacao_gauss_jordan(matriz_A, vetor_b);
      // Exibindo os resultados
 	cout << "Soluções do sistema (Gauss-Jordan): ";
 	for (double xi : x_gauss_jordan) {
-		cout << fixed << setprecision(3) << xi << " "; 
+		cout << fixed << setprecision(10) << xi << " "; 
 	 }
 	cout << endl;
 
