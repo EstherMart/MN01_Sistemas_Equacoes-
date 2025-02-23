@@ -5,6 +5,19 @@
 using namespace std;
 
 // Funcao para calcular a determinante das matrizes
+// Função de arredondamento com precisão especificada para evitar números muito pequenos na saída do Gauss-Jordan
+double arredondar(double valor, int casas_decimais = 3) {
+    double fator = pow(10, casas_decimais);
+    double resultado = round(valor * fator) / fator;
+
+    // Se o valor arredondado for muito pequeno (perto de zero), definimos explicitamente como zero
+    if (fabs(resultado) < pow(10, -casas_decimais)) {
+        resultado = 0.0;
+    }
+
+    return resultado;
+}
+
 double calcular_determinante(vector<vector<double>>& A){
 
 	int n = A.size();
@@ -132,21 +145,12 @@ vector<double> eliminacao_gauss(vector<vector<double>> A, vector<double> b){
 	}
 
 	vector<double> x = cramer(A, b);
+	// Extraindo a solução com precisão
+    	for (int i = 0; i < x.size(); i++) {
+        	x[i] = arredondar(x[i]);  // Arredondar a solução para evitar números muito pequenos
+    	}
 	return x;
 
-}
-
-// Função de arredondamento com precisão especificada para evitar números muito pequenos na saída do Gauss-Jordan
-double arredondar(double valor, int casas_decimais = 3) {
-    double fator = pow(10, casas_decimais);
-    double resultado = round(valor * fator) / fator;
-
-    // Se o valor arredondado for muito pequeno (perto de zero), definimos explicitamente como zero
-    if (fabs(resultado) < pow(10, -casas_decimais)) {
-        resultado = 0.0;
-    }
-
-    return resultado;
 }
 
 // Método de Gauss-Jordan para resolver sistemas lineares. A ideia é construir a matriz aumentada [A | b], normalizando as linhas de fforma que a diagonal principal tenha 1s (Matriz identidade)
