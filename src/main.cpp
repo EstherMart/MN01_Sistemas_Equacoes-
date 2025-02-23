@@ -13,7 +13,7 @@ int main(){
 
     int escolha;
     cout << "Escolha a opção:\n";
-    cout << "1 - Usar matriz matriz padronizada\n";
+    cout << "1 - Usar matriz padronizada\n";
     cout << "2 - Inserir matriz e vetor\n";
     cout << "Opção: ";
     cin >> escolha;
@@ -61,27 +61,16 @@ int main(){
     }
 
 	// Exibir a matriz A com formatação bonitinha
-	cout << "\nMatriz A: [" << endl;
-	for (const auto& row : matriz_A) {
-		cout << "    [";
-		for (size_t i = 0; i < row.size(); ++i) {
-			// Formatar a saída para ter 4 espaços de largura, alinhado à direita
-			cout << setw(4) << row[i];
-			if (i < row.size() - 1) cout << " ";
-		}
-		cout << "]" << endl;
-	}
-	cout << "]" << endl;
+    cout << "\n====input====" << endl;
+	cout << "Matriz A: ";
+	print_matriz(matriz_A);
 
 	// Exibir o vetor b com formatação bonitinha
-	cout << "Vetor b: [";
-	for (size_t i = 0; i < vetor_b.size(); ++i) {
-		cout << vetor_b[i];
-		if (i < vetor_b.size() - 1) cout << " ";
-	}
-	cout << "]" << endl;
+	cout << "Vetor b: ";
+    print_vetor(vetor_b);
+    cout << "=============" << endl;
 
-	cout << endl;
+    cout << endl;
 
     // Realizando o cálculo do determinante 
     double detA = calcular_determinante(matriz_A);
@@ -94,16 +83,17 @@ int main(){
 
     // Resolvendo o sistema usando Eliminação de Gauss --> Triangular superior
     vector<double> x_gauss = eliminacao_gauss(matriz_A, vetor_b);
+	// Resolvendo o sistema usando Gauss-Jordan --> Matriz Identidade
+    vector<double> x_gauss_jordan = eliminacao_gauss_jordan(matriz_A, vetor_b);
+
+    // Exibindo os resultados
     cout << "Soluções do sistema (Eliminação de Gauss): ";
     for (double xi : x_gauss) {
         cout << fixed << setprecision(10) << xi << " ";
     }
     cout << endl;
 
-	// Resolvendo o sistema usando Gauss-Jordan --> Matriz Identidade
-    vector<double> x_gauss_jordan = eliminacao_gauss_jordan(matriz_A, vetor_b);
-     // Exibindo os resultados
-	cout << "Soluções do sistema (Gauss-Jordan): ";
+	cout << "Soluções do sistema (Gauss-Jordan):        ";
 	for (double xi : x_gauss_jordan) {
 		cout << fixed << setprecision(10) << xi << " "; 
 	 }
