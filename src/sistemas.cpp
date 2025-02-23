@@ -132,6 +132,11 @@ vector<double> eliminacao_gauss(vector<vector<double>> A, vector<double> b){
 	}
 
 	vector<double> x = cramer(A, b);
+	// Extraindo a solução com precisão
+    	vector<double> x(n);
+    	for (int i = 0; i < n; i++) {
+        	x[i] = arredondar(A[i][n]);  // Arredondar a solução para evitar números muito pequenos
+    	}
 	return x;
 
 }
