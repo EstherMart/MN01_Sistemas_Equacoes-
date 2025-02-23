@@ -13,7 +13,7 @@ int main(){
 
     int escolha;
     cout << "Escolha a opção:\n";
-    cout << "1 - Usar matriz matriz padronizada\n";
+    cout << "1 - Usar matriz padronizada\n";
     cout << "2 - Inserir matriz e vetor\n";
     cout << "Opção: ";
     cin >> escolha;

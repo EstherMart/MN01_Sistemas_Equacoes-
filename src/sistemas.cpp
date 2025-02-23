@@ -171,7 +171,7 @@ vector<double> eliminacao_gauss(vector<vector<double>> A, vector<double> b){
 
 	vector<double> x = cramer(A, b);
 	// Extraindo a solução com precisão
-    	for (int i = 0; i < x.size(); i++) {
+    	for (size_t i = 0; i < x.size(); i++) {
         	x[i] = arredondar(x[i]);  // Arredondar a solução para evitar números muito pequenos
     	}
 	return x;
