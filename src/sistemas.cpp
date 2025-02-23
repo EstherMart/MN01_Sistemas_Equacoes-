@@ -1,8 +1,33 @@
 # include "sistemas.hpp"
 #include <cmath>
+#include <iomanip>
+#include <iostream>
 #include <vector>
 
 using namespace std;
+
+void print_matriz(vector<vector<double>>& m) {
+	cout << "[" << endl;
+	for (const auto& row : m) {
+		cout << "    [";
+		for (size_t i = 0; i < row.size(); ++i) {
+			// Formatar a saída para ter 4 espaços de largura, alinhado à direita
+			cout << setw(4) << row[i];
+			if (i < row.size() - 1) cout << " ";
+		}
+		cout << "]" << endl;
+	}
+	cout << "]" << endl;
+}
+
+void print_vetor(vector<double>& v) {
+	cout << "[";
+	for (size_t i = 0; i < v.size(); ++i) {
+		cout << v[i];
+		if (i < v.size() - 1) cout << " ";
+	}
+	cout << "]" << endl;
+}
 
 // Funcao para calcular a determinante das matrizes
 // Função de arredondamento com precisão especificada para evitar números muito pequenos na saída do Gauss-Jordan

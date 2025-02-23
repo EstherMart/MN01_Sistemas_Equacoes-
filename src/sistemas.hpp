@@ -5,6 +5,12 @@
 using namespace std;
 // Declarando as funcoes
 
+// pretty print matriz
+void print_matriz(vector<vector<double>>& m);
+
+// pretty print vetor
+void print_vetor(vector<double>& v);
+
  // Funcao para calcular a determinante de uma matriz
 double calcular_determinante(vector<vector<double>>& A);
 

@@ -61,27 +61,16 @@ int main(){
     }
 
 	// Exibir a matriz A com formatação bonitinha
-	cout << "\nMatriz A: [" << endl;
-	for (const auto& row : matriz_A) {
-		cout << "    [";
-		for (size_t i = 0; i < row.size(); ++i) {
-			// Formatar a saída para ter 4 espaços de largura, alinhado à direita
-			cout << setw(4) << row[i];
-			if (i < row.size() - 1) cout << " ";
-		}
-		cout << "]" << endl;
-	}
-	cout << "]" << endl;
+    cout << "\n====input====" << endl;
+	cout << "Matriz A: ";
+	print_matriz(matriz_A);
 
 	// Exibir o vetor b com formatação bonitinha
-	cout << "Vetor b: [";
-	for (size_t i = 0; i < vetor_b.size(); ++i) {
-		cout << vetor_b[i];
-		if (i < vetor_b.size() - 1) cout << " ";
-	}
-	cout << "]" << endl;
+	cout << "Vetor b: ";
+    print_vetor(vetor_b);
+    cout << "=============" << endl;
 
-	cout << endl;
+    cout << endl;
 
     // Realizando o cálculo do determinante 
     double detA = calcular_determinante(matriz_A);
