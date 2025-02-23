@@ -87,6 +87,7 @@ double calcular_determinante(vector<vector<double>>& A){
 
 vector<double> cramer(vector<vector<double>> A, vector<double> b){
 
+	cout << "============ CALCULANDO CRAMER ===========" << endl;
 	// Guardando o determinante da matriz A
 	double determinante = calcular_determinante(A);
 	double determinante_i;
@@ -97,7 +98,7 @@ vector<double> cramer(vector<vector<double>> A, vector<double> b){
 	// Criando um vetor que vai ser usado para calcular as determinantes
 	vector<vector<double>> matriz_deti = A;
 
-
+	cout << "Determinante principal: " << determinante << endl;
 
 	// Percorrendo as colunas e modificando a mesma
 	int n = A.size();
@@ -112,6 +113,7 @@ vector<double> cramer(vector<vector<double>> A, vector<double> b){
 
 		// Calculando a determinante para aquela coluna
 		determinante_i = calcular_determinante(matriz_deti);
+		cout << "Determinante " << i+1 <<": " << determinante_i << endl;
 
 		// Calculando o valor para xi
 		solucao.push_back(determinante_i / determinante);
@@ -120,6 +122,8 @@ vector<double> cramer(vector<vector<double>> A, vector<double> b){
 		matriz_deti = A;
 
 	}
+
+	cout << "================ FIM CRAMER ==============" << endl;
 
 	// Retornando o vetor com a solucao do sistema
 	return solucao;
@@ -152,6 +156,7 @@ vector<double> eliminacao_gauss(vector<vector<double>> A, vector<double> b){
 	for (size_t i = 0; i < x.size(); i++) {
 		x[i] = arredondar(x[i]);  // Arredondar a solução para evitar números muito pequenos
 	}
+	cout << "Vetor solução: "; print_vetor(x);
 
 	cout << "========= FIM ELIMINAÇÃO DE GAUSS ========" << endl;
 	return x;
@@ -195,6 +200,8 @@ vector<double> eliminacao_gauss_jordan(vector<vector<double>> A, vector<double> 
     for (int i = 0; i < n; i++) {
         x[i] = arredondar(A[i][n]);  // Arredondar a solução para evitar números muito pequenos
     }
+	cout << "Vetor solução: "; print_vetor(x);
+
 	cout << "============ FIM GAUSS JORDAN ============" << endl;
 
     return x;

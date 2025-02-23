@@ -93,7 +93,7 @@ int main(){
     }
     cout << endl;
 
-	cout << "Soluções do sistema (Gauss-Jordan): ";
+	cout << "Soluções do sistema (Gauss-Jordan):        ";
 	for (double xi : x_gauss_jordan) {
 		cout << fixed << setprecision(10) << xi << " "; 
 	 }
