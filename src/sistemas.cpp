@@ -11,8 +11,8 @@ void print_matriz(vector<vector<double>>& m) {
 	for (const auto& row : m) {
 		cout << "    [";
 		for (size_t i = 0; i < row.size(); ++i) {
-			// Formatar a saída para ter 4 espaços de largura, alinhado à direita
-			cout << setw(4) << row[i];
+			// Formatar a saída para ter 7 espaços de largura, alinhado à direita
+			cout << fixed << setprecision(3) << setw(7) << row[i];
 			if (i < row.size() - 1) cout << " ";
 		}
 		cout << "]" << endl;
@@ -23,7 +23,7 @@ void print_matriz(vector<vector<double>>& m) {
 void print_vetor(vector<double>& v) {
 	cout << "[";
 	for (size_t i = 0; i < v.size(); ++i) {
-		cout << v[i];
+		cout << fixed << setprecision(3) << v[i];
 		if (i < v.size() - 1) cout << " ";
 	}
 	cout << "]" << endl;
@@ -97,6 +97,8 @@ vector<double> cramer(vector<vector<double>> A, vector<double> b){
 	// Criando um vetor que vai ser usado para calcular as determinantes
 	vector<vector<double>> matriz_deti = A;
 
+
+
 	// Percorrendo as colunas e modificando a mesma
 	int n = A.size();
 	for (int i = 0; i < n; i++){
@@ -124,35 +126,11 @@ vector<double> cramer(vector<vector<double>> A, vector<double> b){
 
 }
 
-
-
-// Esta funcao gera o vetor solucao, dada a sua matriz na forma triangular superior.
-// --> Método da substituição retroativa (Back Substitution) para resolver um sistema triangular superior
-vector<double> substituicao_retroativa(vector<vector<double>> A, vector<double> b){
-
-	// Criando a variavel x
-	vector<double> x(A.size(), 0);
-
-	// Calculo para obter o vetor solucao
-	for (int i = A.size() - 1; i >= 0; i--){
-
-		double S = 0;
-		for (size_t j = i + 1; j < A.size(); j++){
-			S += A[i][j] * x[j];
-		}
-
-		// O valor referente a Xi
-		x[i] = (b[i] - S)/A[i][i];
-
-	}
-
-	return x;
-
-}
-
 // Criando o metodo da eliminacao de gauss, que vai transformar a matriz aumentada [A|b] em sua forma triangular superior
 vector<double> eliminacao_gauss(vector<vector<double>> A, vector<double> b){
 
+	cout << "===== CALCULANDO ELIMINAÇÃO DE GAUSS =====" << endl;
+	cout << "k0: "; print_matriz(A);
 	for (size_t k = 0; k < A.size() - 1; k++){
 
 		for (size_t i = k + 1; i < A.size(); i++){
@@ -166,14 +144,16 @@ vector<double> eliminacao_gauss(vector<vector<double>> A, vector<double> b){
 			A[i][k] = 0;
 
 		}
-
+		cout << "k" << k+1 << ": "; print_matriz(A);
 	}
 
 	vector<double> x = cramer(A, b);
 	// Extraindo a solução com precisão
-    	for (size_t i = 0; i < x.size(); i++) {
-        	x[i] = arredondar(x[i]);  // Arredondar a solução para evitar números muito pequenos
-    	}
+	for (size_t i = 0; i < x.size(); i++) {
+		x[i] = arredondar(x[i]);  // Arredondar a solução para evitar números muito pequenos
+	}
+
+	cout << "========= FIM ELIMINAÇÃO DE GAUSS ========" << endl;
 	return x;
 
 }
@@ -181,11 +161,14 @@ vector<double> eliminacao_gauss(vector<vector<double>> A, vector<double> b){
 // Método de Gauss-Jordan para resolver sistemas lineares. A ideia é construir a matriz aumentada [A | b], normalizando as linhas de fforma que a diagonal principal tenha 1s (Matriz identidade)
 vector<double> eliminacao_gauss_jordan(vector<vector<double>> A, vector<double> b) {
     int n = A.size();
+
+	cout << "========= CALCULANDO GAUSS JORDAN ========" << endl;
     
     // Criando a matriz aumentada [A | b]
     for (int i = 0; i < n; i++) {
         A[i].push_back(b[i]);
     }
+	cout << "Matriz aumentada: "; print_matriz(A);
 
     // Aplicando o método de Gauss-Jordan
     for (int i = 0; i < n; i++) {
@@ -204,6 +187,7 @@ vector<double> eliminacao_gauss_jordan(vector<vector<double>> A, vector<double> 
                 }
             }
         }
+		cout << "k" << i+1 << ": "; print_matriz(A);
     }
 
     // Extraindo a solução com precisão
@@ -211,6 +195,7 @@ vector<double> eliminacao_gauss_jordan(vector<vector<double>> A, vector<double> 
     for (int i = 0; i < n; i++) {
         x[i] = arredondar(A[i][n]);  // Arredondar a solução para evitar números muito pequenos
     }
+	cout << "============ FIM GAUSS JORDAN ============" << endl;
 
     return x;
 }

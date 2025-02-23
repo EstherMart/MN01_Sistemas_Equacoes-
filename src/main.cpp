@@ -83,15 +83,16 @@ int main(){
 
     // Resolvendo o sistema usando Eliminação de Gauss --> Triangular superior
     vector<double> x_gauss = eliminacao_gauss(matriz_A, vetor_b);
+	// Resolvendo o sistema usando Gauss-Jordan --> Matriz Identidade
+    vector<double> x_gauss_jordan = eliminacao_gauss_jordan(matriz_A, vetor_b);
+
+    // Exibindo os resultados
     cout << "Soluções do sistema (Eliminação de Gauss): ";
     for (double xi : x_gauss) {
         cout << fixed << setprecision(10) << xi << " ";
     }
     cout << endl;
 
-	// Resolvendo o sistema usando Gauss-Jordan --> Matriz Identidade
-    vector<double> x_gauss_jordan = eliminacao_gauss_jordan(matriz_A, vetor_b);
-     // Exibindo os resultados
 	cout << "Soluções do sistema (Gauss-Jordan): ";
 	for (double xi : x_gauss_jordan) {
 		cout << fixed << setprecision(10) << xi << " "; 
