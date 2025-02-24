@@ -89,7 +89,7 @@ A aplicação implementa as seguintes funcionalidades:
 
 3. **Execute o programa:**
     ```bash
-    make run-main # roda a main
+    make run-main # roda a main de forma interativa
     make run-teste # roda um teste que segue os dados pedidos na questão
     ```
 
