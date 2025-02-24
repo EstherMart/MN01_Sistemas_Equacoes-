@@ -89,8 +89,8 @@ A aplicação implementa as seguintes funcionalidades:
 
 3. **Execute o programa:**
     ```bash
-    make run-main # roda a main de forma interativa
-    make run-teste # roda um teste que segue os dados pedidos na questão
+    make run-main # Executa a main, que é interativa
+    make run-teste # Executa um teste que segue os dados pedidos na questão
     ```
 
 O programa exibirá um menu no terminal para escolher entre usar a matriz padrão ou inserir novos valores para para a matriz \(C\) e o vetor \(v\). Os resultados dos cálculos de deslocamento e amplitude serão apresentados, e a conclusão se os pêndulos irão romper ou não, levando em consideração a matriz da questão, serão debatidos durante a apresentação (mas podem ser observados compilando e executando o `item_a.cpp` e o `item_b.cpp` onde fizemos a análise no output).
